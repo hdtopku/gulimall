@@ -24,4 +24,4 @@ buildNumber.properties
 *.ipr
 **/.gitignore
 .DS_Store
-**/resources/config/*-common.properties
+**/resources/config/application-common.properties

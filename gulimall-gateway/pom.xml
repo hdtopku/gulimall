@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.atguigu.gulimall</groupId>
-    <artifactId>gulimall-gategay</artifactId>
+    <artifactId>gulimall-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-gategay</name>
+    <name>gulimall-gateway</name>
     <description>谷粒商城-API网关</description>
 
     <properties>
@@ -22,9 +22,14 @@
             <artifactId>gulimall-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+<!--      因为高版本的gateway默认不引入loadbalance，否则不支持负载均衡，报错503  -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
 
         <dependency>
