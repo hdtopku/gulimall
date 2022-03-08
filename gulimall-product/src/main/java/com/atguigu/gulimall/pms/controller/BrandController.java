@@ -1,21 +1,19 @@
 package com.atguigu.gulimall.pms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.atguigu.gulimall.pms.entity.BrandEntity;
-import com.atguigu.gulimall.pms.service.BrandService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.common.validate.group.AddGroup;
+import com.atguigu.gulimall.common.validate.group.UpdateGroup;
+import com.atguigu.gulimall.common.validate.group.UpdateStatusGroup;
+import com.atguigu.gulimall.pms.entity.BrandEntity;
+import com.atguigu.gulimall.pms.service.BrandService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -59,9 +57,15 @@ public class BrandController {
      */
     @RequestMapping("/save")
     @RequiresPermissions("pms:brand:save")
-    public R save(@RequestBody BrandEntity brand){
+    public R save(@RequestBody @Validated(AddGroup.class) BrandEntity brand /*, BindingResult bindingResult*/){
+//        if (bindingResult.hasErrors()) {
+////            HashMap<Object, Object> errorMap = new HashMap<>();
+//            return R.error("提交数据不合法").put("data", bindingResult.getFieldErrors().stream()
+//                    .map(error->
+//                            StrUtil.builder().append(error.getDefaultMessage()).append(error.getRejectedValue()) )
+//                    .collect(Collectors.toList()));
+//        }
 		brandService.save(brand);
-
         return R.ok();
     }
 
@@ -70,8 +74,19 @@ public class BrandController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("pms:brand:update")
-    public R update(@RequestBody BrandEntity brand){
+    public R update(@RequestBody @Validated(UpdateGroup.class) BrandEntity brand){
 		brandService.updateById(brand);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改显示状态
+     */
+    @RequestMapping("/update/status")
+    @RequiresPermissions("pms:brand:update")
+    public R updateStatus(@RequestBody @Validated(UpdateStatusGroup.class) BrandEntity brand){
+        brandService.updateById(brand);
 
         return R.ok();
     }
