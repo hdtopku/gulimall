@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author lxh
- * @Description TODO
  * @createTime 2021-07-24 18:00:22
  */
 @MapperScan({"com.atguigu.gulimall.**.mapper", "com.atguigu.gulimall.**.dao"})

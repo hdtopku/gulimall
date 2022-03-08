@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author lxh
- * @Description TODO
  * @createTime 2022-03-02 01:40:17
  */
 //启用服务发现

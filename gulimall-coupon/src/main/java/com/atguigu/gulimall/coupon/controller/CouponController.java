@@ -1,7 +1,7 @@
 package com.atguigu.gulimall.coupon.controller;
 
-import com.atguigu.gulimall.common.utils.R;
-import com.atguigu.gulimall.mbg.entity.SmsCoupon;
+import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.mbg2.entity.SmsCoupon;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,6 @@ import java.util.Objects;
 
 /**
  * @author lxh
- * @Description TODO
  * @createTime 2022-03-01 21:08:13
  */
 @RestController

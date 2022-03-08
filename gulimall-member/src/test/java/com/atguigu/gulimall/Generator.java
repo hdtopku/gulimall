@@ -11,7 +11,6 @@ import org.springframework.core.env.Environment;
 
 /**
  * @author lxh
- * @Description TODO
  * @createTime 2021-01-20 23:08:02
  */
 @SpringBootApplication
@@ -40,6 +39,13 @@ public class Generator {
                         return "I" + this.entityNameConvert(tableName) + "ServiceImpl";
                     }
 
+                    /**
+                     * 自定义Controller类文件的名称规则
+                     */
+                    @Override
+                    public String controllerNameConvert(String tableName) {
+                        return StrUtil.upperFirst(this.propertyNameConvert(tableName) + "Action");
+                    }
                 })
                 .basePackage("com.atguigu.gulimall.mbg")
                 .port(8068)

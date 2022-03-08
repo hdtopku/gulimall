@@ -1,7 +1,7 @@
 package com.atguigu.gulimall.member;
 
-import com.atguigu.gulimall.common.utils.R;
-import com.atguigu.gulimall.mbg.entity.UmsMember;
+import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.mbg2.entity.UmsMember;
 import com.atguigu.gulimall.member.feign.CouponFeignService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author lxh
- * @Description TODO
  * @createTime 2022-03-01 22:07:36
  */
 @RestController

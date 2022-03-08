@@ -8,7 +8,6 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 /**
  * @author lxh
- * @Description TODO
  * @createTime 2022-03-06 02:07:20
  */
 @Configuration
