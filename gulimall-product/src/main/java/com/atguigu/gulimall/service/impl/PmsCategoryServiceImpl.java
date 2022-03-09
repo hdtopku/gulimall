@@ -1,6 +1,7 @@
 package com.atguigu.gulimall.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.atguigu.gulimall.pms.entity.CategoryEntity;
 import com.atguigu.gulimall.pms.service.CategoryService;
@@ -41,11 +42,16 @@ public class PmsCategoryServiceImpl implements PmsCategoryService {
     private CategoryEntity setChildren(CategoryEntity parent, List<CategoryEntity> allCategories) {
         CategoryEntity categoryE = new CategoryEntity();
         BeanUtil.copyProperties(parent, categoryE);
-        categoryE.setChildren(allCategories.stream()
+        List<CategoryEntity> children = allCategories.stream()
                 .filter(item-> item.getParentCid().equals(parent.getCatId()))
                 .map(item-> setChildren(item, allCategories))
                 .sorted(Comparator.comparingInt(m -> ObjectUtil.defaultIfNull(m.getSort(), 0)))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+//        如果children为空，则不set。否则前端级联器会显示第四级，且为空白
+//        if (CollUtil.isEmpty(children)) {
+//            return categoryE;
+//        }
+        categoryE.setChildren(children);
         return categoryE;
     }
 }

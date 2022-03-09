@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="danger" @click="batchDel" :disabled="$refs.tree.getCheckedKeys().length < 1">批量删除</el-button>
+    <el-button type="danger" @click="batchDel">批量删除</el-button>
     <el-switch
       v-model="draggable"
       active-text="开启拖拽"

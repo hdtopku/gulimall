@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.pms.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -18,10 +19,15 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        String key = (String) params.get("key");
+        QueryWrapper<BrandEntity> wrapper = new QueryWrapper<>();
+        if (StrUtil.isNotBlank(key)) {
+            wrapper.eq("brand_id", key).or().eq("first_letter", key)
+                    .or().like("name", key)
+                    .or().like("descript", key);
+        }
         IPage<BrandEntity> page = this.page(
-                new Query<BrandEntity>().getPage(params),
-                new QueryWrapper<BrandEntity>()
-        );
+                new Query<BrandEntity>().getPage(params), wrapper);
 
         return new PageUtils(page);
     }

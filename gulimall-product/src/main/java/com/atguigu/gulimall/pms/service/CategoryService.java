@@ -1,9 +1,10 @@
 package com.atguigu.gulimall.pms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.pms.entity.CategoryEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,12 @@ import java.util.Map;
 public interface CategoryService extends IService<CategoryEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 找到catelogId的完整路径
+     * [爷/父/当前节点]
+     * @return
+     */
+    List<Long> findCategoryPath(Long categoryId);
 }
 
