@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author lxh
  * @createTime 2022-03-01 22:09:27
  */
-@FeignClient("gulimall-coupon")
+@FeignClient("gulimall-sms")
 public interface CouponFeignService {
     @GetMapping("coupon/member/list")
     R memberCoupons();

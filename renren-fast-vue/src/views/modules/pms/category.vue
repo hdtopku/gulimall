@@ -101,7 +101,7 @@ export default {
     }
   },
   methods: {
-    getMenus () {
+    getCategorys () {
       this.$http({
         url: this.$http.adornUrl('/pms/category/list/tree'),
         method: 'get'
@@ -135,7 +135,7 @@ export default {
           type: 'success',
           duration: 1500
         })
-        this.getMenus()
+        this.getCategorys()
         this.expandedKeys = [this.category.parentCid]
         this.dialogVisible = false
       })
@@ -166,7 +166,7 @@ export default {
           message: '菜单修改成功',
           type: 'success'
         })
-        this.getMenus()
+        this.getCategorys()
         this.expandedKeys = [this.category.parentCid]
         this.dialogVisible = false
       })
@@ -187,7 +187,7 @@ export default {
             type: 'success',
             duration: 1500
           })
-          this.getMenus()
+          this.getCategorys()
         })
       })
     },
@@ -197,7 +197,7 @@ export default {
         method: 'post',
         data: this.$http.adornData(this.updateNodes, false)
       }).then(({ data }) => {
-        this.getMenus()
+        this.getCategorys()
         this.$message({
           message: '修改成功',
           type: 'success',
@@ -288,7 +288,7 @@ export default {
               type: 'success',
               duration: 1500
             })
-            this.getMenus()
+            this.getCategorys()
             // 设置需要默认展开的菜单
             this.expandedKeys = [menu.parentCid]
           } else {
@@ -299,7 +299,7 @@ export default {
     }
   },
   created () {
-    this.getMenus()
+    this.getCategorys()
   }
 }
 </script>

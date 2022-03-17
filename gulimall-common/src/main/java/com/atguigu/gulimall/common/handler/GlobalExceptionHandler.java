@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.common.handler;
 
+import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.atguigu.common.utils.R;
@@ -32,7 +33,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Throwable.class)
     public R handleException(Throwable throwable) {
-        log.error(throwable.getMessage());
-        return R.error(BizCodeEnum.UNKNOWN_EXCEPTION.getCode(), BizCodeEnum.UNKNOWN_EXCEPTION.getMsg());
+        log.error(throwable.getMessage(), throwable);
+        return R.error(BizCodeEnum.UNKNOWN_EXCEPTION.getCode(), BizCodeEnum.UNKNOWN_EXCEPTION.getMsg())
+                .put("error", String.format("【%s】%s", throwable.getMessage(), ExceptionUtil.stacktraceToString(throwable)));
     }
 }

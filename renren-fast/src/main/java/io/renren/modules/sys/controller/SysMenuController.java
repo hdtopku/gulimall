@@ -20,10 +20,8 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 系统菜单
@@ -66,9 +64,7 @@ public class SysMenuController extends AbstractController {
             }
 
         }
-
-
-        return menuList;
+        return menuList.stream().sorted(Comparator.comparingInt(SysMenuEntity::getOrderNum)).collect(Collectors.toList());
     }
 
     /**

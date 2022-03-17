@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.atguigu.gulimall.pms.entity.AttrEntity;
+import com.atguigu.gulimall.pms.service.AttrService;
 import com.atguigu.gulimall.pms.service.CategoryService;
+import com.atguigu.gulimall.vo.AttrGroupRelationVo;
+import lombok.RequiredArgsConstructor;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.pms.entity.AttrGroupEntity;
 import com.atguigu.gulimall.pms.service.AttrGroupService;
@@ -30,12 +30,43 @@ import com.atguigu.common.utils.R;
  */
 @RestController
 @RequestMapping("pms/attrgroup")
+@RequiredArgsConstructor
 public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
     @Autowired
     private CategoryService categoryService;
+    private final AttrService attrService;
 
+
+    @GetMapping("{attrgroupId}/noattr/relation")
+    public R attrNoRelation(@PathVariable("attrgroupId") Long attrgroupId, @RequestParam Map<String, Object> params) {
+        PageUtils page = attrService.getAttrNoRelation(attrgroupId, params);
+        return R.ok().put("data", page);
+    }
+
+    @GetMapping("{attrgroupId}/attr/relation")
+    public R attrRelation(@PathVariable("attrgroupId") Long attrgroupId) {
+        List<AttrEntity> attrEntities = attrService.getAttrRelation(attrgroupId);
+        return R.ok().put("data", attrEntities);
+    }
+
+    @PostMapping("attr/relation/delete")
+    public R deleteRelation(@RequestBody List<AttrGroupRelationVo> attrGroupRelationVoList) {
+        attrGroupService.deleteRelation(attrGroupRelationVoList);
+        return R.ok();
+    }
+
+    @PostMapping("attr/relation")
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> attrGroupRelationVoList) {
+        attrGroupService.addRelation(attrGroupRelationVoList);
+        return R.ok();
+    }
+
+    @GetMapping("{catelogId}/withattr")
+    public R getAttrGroupWithAttrs(@PathVariable("catelogId") Long catelogId) {
+        return R.ok().put("data", attrGroupService.getAttrGroupWithAttrs(catelogId));
+    }
     /**
      * 列表
      */

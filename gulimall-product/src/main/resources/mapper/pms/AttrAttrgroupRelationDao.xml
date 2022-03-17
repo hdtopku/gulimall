@@ -3,13 +3,19 @@
 
 <mapper namespace="com.atguigu.gulimall.pms.dao.AttrAttrgroupRelationDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.atguigu.gulimall.pms.entity.AttrAttrgroupRelationEntity" id="attrAttrgroupRelationMap">
         <result property="id" column="id"/>
         <result property="attrId" column="attr_id"/>
         <result property="attrGroupId" column="attr_group_id"/>
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
+    <delete id="deleteBatchRelation" parameterType="com.atguigu.gulimall.pms.entity.AttrAttrgroupRelationEntity">
+        delete from pms_attr_attrgroup_relation where
+        <foreach collection="entities" item="item" separator="or">
+           ( attr_group_id=#{item.attrGroupId} and attr_id=#{item.attrId})
+        </foreach>
+    </delete>
 
 
 </mapper>

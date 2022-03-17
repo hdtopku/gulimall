@@ -110,10 +110,16 @@
         fixed="right"
         header-align="center"
         align="center"
-        width="150"
+        width="250"
         label="操作"
       >
         <template slot-scope="scope">
+          <el-button
+            type="text"
+            size="small"
+            @click="updateCatelogHandle(scope.row.brandId)"
+            >关联分类</el-button
+          >
           <el-button
             type="text"
             size="small"
@@ -145,33 +151,110 @@
       ref="addOrUpdate"
       @refreshDataList="getDataList"
     ></add-or-update>
+    <el-dialog title="关联分类" :visible.sync="cateRelationDialogVisible">
+      <el-popover
+        placement="right-end"
+        width="200"
+        trigger="click"
+        v-model="popCatelogSelectVisible"
+      >
+        <CategoryCascader :catelogPath.sync="catelogPath"></CategoryCascader>
+        <el-button slot="reference">新增关联</el-button>
+        <div style="text-align: right; margin: 0">
+          <el-button
+            size="mini"
+            type="text"
+            @click="popCatelogSelectVisible = false"
+            >取消</el-button
+          >
+          <el-button type="primary" size="mini" @click="addCatelogSelect"
+            >确定</el-button
+          >
+        </div>
+      </el-popover>
+      <hr />
+      <el-table :data="cateRelationTableData" style="width: 100%">
+        <el-table-column prop="id" label="#"> </el-table-column>
+        <el-table-column prop="brandName" label="品牌名"> </el-table-column>
+        <el-table-column prop="catelogName" label="分类名"> </el-table-column>
+        <el-table-column prop="catelogName" label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="small"
+              @click="deleteCateRelationHandle(scope.row.id)"
+              >移除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="cateRelationDialogVisible = false">确定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import AddOrUpdate from './brand-add-or-update'
+import CategoryCascader from '../common/category-cascader.vue'
+
 export default {
+  components: { CategoryCascader, AddOrUpdate },
   data () {
     return {
       dataForm: {
         key: ''
       },
+      brandId: 0,
       dataList: [],
       pageIndex: 1,
       pageSize: 10,
       totalPage: 0,
       dataListLoading: false,
       dataListSelections: [],
-      addOrUpdateVisible: false
+      addOrUpdateVisible: false,
+      cateRelationDialogVisible: false,
+      popCatelogSelectVisible: false,
+      cateRelationTableData: [],
+      catelogPath: []
     }
-  },
-  components: {
-    AddOrUpdate
   },
   activated () {
     this.getDataList()
   },
   methods: {
+    addCatelogSelect () {
+      this.$http({
+        url: this.$http.adornUrl('/pms/categorybrandrelation/save'),
+        method: 'post',
+        data: this.$http.adornData({brandId: this.brandId, catelogId: this.catelogPath[this.catelogPath.length - 1]}, false)
+      }).then(({ data }) => {
+        this.getCateRelation()
+      })
+    },
+    deleteCateRelationHandle (id) {
+      this.$http({
+        url: this.$http.adornUrl('/pms/categorybrandrelation/delete'),
+        method: 'post',
+        data: this.$http.adornData([id], false)
+      }).then(({ data }) => {
+        this.getCateRelation()
+      })
+    },
+    updateCatelogHandle (brandId) {
+      this.cateRelationDialogVisible = true
+      this.brandId = brandId
+      this.getCateRelation()
+    },
+    getCateRelation () {
+      this.$http({
+        url: this.$http.adornUrl('/pms/categorybrandrelation/list'),
+        method: 'get',
+        params: this.$http.adornParams({ brandId: this.brandId })
+      }).then(({ data }) => {
+        this.cateRelationTableData = data.data
+      })
+    },
     updateStatus (row) {
       let { brandId, showStatus } = row
       this.$http({
