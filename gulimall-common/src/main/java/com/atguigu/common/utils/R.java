@@ -8,6 +8,9 @@
 
 package com.atguigu.common.utils;
 
+import cn.hutool.core.lang.TypeReference;
+import cn.hutool.json.JSONUtil;
+import lombok.Data;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -18,8 +21,17 @@ import java.util.Map;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@Data
 public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
+
+    public <T> T getData(TypeReference<T> typeReference) {
+        Object data = get("data");
+        return JSONUtil.toBean(JSONUtil.toJsonStr(data), typeReference, true);
+    }
+    public R setData(Object data) {
+        return put("data", data);
+    }
 
     public R() {
         put("code", 0);

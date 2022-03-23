@@ -31,7 +31,7 @@
 #        - id: gulimall-product
 #          uri: lb://gulimall-product
 #          predicates:
-#            - Path=/api/pms/**
+#            - Path=/api/pms/**,/hello
 #          filters:
 #            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
 #        - id: renren-fast
@@ -40,3 +40,7 @@
 #            - Path=/api/** # 后端接口/api前缀，路由到lb://renren-fast
 #          filters: # 路径重写
 #            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
+#        - id: gulimall-host-product
+#          uri: lb://gulimall-product # 负载均衡到gulimall-product服务
+#          predicates:
+#            - Host=**.gulimall.com

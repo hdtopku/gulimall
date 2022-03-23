@@ -76,7 +76,7 @@ export default {
   methods: {
     productUp (id) {
       this.$http({
-        url: this.$http.adornUrl('/spu/spuinfo/' + id + '/up'),
+        url: this.$http.adornUrl('/pms/spuinfo/' + id + '/up'),
         method: 'post'
       }).then(({ data }) => {
         if (data && data.code === 0) {

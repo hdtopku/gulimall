@@ -1,29 +1,27 @@
-//package com.atguigu.gulimall;
-//
-//import com.atguigu.gulimall.mbg.entity.PmsBrand;
-//import com.atguigu.gulimall.mbg.service.IPmsBrandService;
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//
-//
-//@SpringBootTest
-//public class GulimallProductApplicationTests {
-//
-//    @Autowired
-//    IPmsBrandService iPmsBrandService;
-//
-//    @Test
-//    void contextLoads() {
-//        PmsBrand brand = new PmsBrand();
-//        brand.setName("华为");
-//        brand.setBrandId(1L);
-//        brand.setDescript("华为品牌😄");
-//        iPmsBrandService.save(brand);
-////        brand.setName("华为");
-//        PmsBrand brand1 = iPmsBrandService.getById(1);
-//        System.out.println("保存成功"+brand1);
-//
-//    }
-//
-//}
+package com.atguigu.gulimall;
+
+import cn.hutool.core.lang.UUID;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+
+import javax.annotation.Resource;
+
+
+@SpringBootTest(classes = GulimallProductApplicationTests.class)
+public class GulimallProductApplicationTests {
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+    @Test
+    void contextLoads() {
+//        stringRedisTemplate.opsForHash();  // key为hash的map
+//        stringRedisTemplate.opsForList();  // list
+//        stringRedisTemplate.opsForSet();  // set
+//        stringRedisTemplate.opsForZSet();  //排序的set
+        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+        ops.set("foo", "bar" + UUID.fastUUID());
+        System.out.println("之前保存的数据是：" + ops.get("foo"));
+    }
+
+}

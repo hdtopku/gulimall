@@ -1,10 +1,12 @@
 package com.atguigu.gulimall.wms.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.Query;
 import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.common.to.SkuHasStockTo;
 import com.atguigu.gulimall.wms.dao.WareSkuDao;
 import com.atguigu.gulimall.wms.entity.WareSkuEntity;
 import com.atguigu.gulimall.wms.feign.PmsFeignService;
@@ -15,7 +17,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service("wareSkuService")
@@ -68,6 +73,21 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         } else {
             wareSkuDao.addStock(skuId, wareId, skuNum);
         }
+    }
+
+    @Override
+    public List<SkuHasStockTo> getSkusHasStock(List<Long> skuIds) {
+        if (CollUtil.isNotEmpty(skuIds)) {
+//            select sum(stock-stock_locked) from wms_ware_sku where sku_id =1
+            return skuIds.stream().map(skuId->{
+                Long count = ObjectUtil.defaultIfNull(this.baseMapper.getSkuStock(skuId), 0L);
+                SkuHasStockTo vo = new SkuHasStockTo();
+                vo.setHasStock( count > 0);
+                vo.setSkuId(skuId);
+                return vo;
+            }).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 
 }

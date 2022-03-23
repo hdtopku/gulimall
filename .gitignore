@@ -24,3 +24,4 @@ buildNumber.properties
 *.ipr
 .DS_Store
 **/resources/config/application-common.properties
+**.log
