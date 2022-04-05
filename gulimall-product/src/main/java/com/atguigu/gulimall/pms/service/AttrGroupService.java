@@ -1,10 +1,11 @@
 package com.atguigu.gulimall.pms.service;
 
-import com.atguigu.gulimall.vo.AttrGroupRelationVo;
-import com.atguigu.gulimall.vo.AttrGroupWithAttrsVo;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.pms.entity.AttrGroupEntity;
+import com.atguigu.gulimall.vo.AttrGroupRelationVo;
+import com.atguigu.gulimall.vo.AttrGroupWithAttrsVo;
+import com.atguigu.gulimall.vo.SpuItemAttrGroupVo;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,7 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
     void addRelation(List<AttrGroupRelationVo> attrGroupRelationVoList);
 
     List<AttrGroupWithAttrsVo> getAttrGroupWithAttrs(Long catelogId);
+
+    List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId);
 }
 

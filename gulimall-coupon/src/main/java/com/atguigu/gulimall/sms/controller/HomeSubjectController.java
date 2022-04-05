@@ -17,13 +17,12 @@ import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
 
-
 /**
  * 首页专题表【jd首页下面很多专题，每个专题链接新的页面，展示专题商品信息】
  *
- * @author ${author}
- * @email ${email}
- * @date 2022-03-14 10:39:24
+ * @author $ {author}
+ * @email $ {email}
+ * @date 2022 -03-14 10:39:24
  */
 @RestController
 @RequestMapping("sms/homesubject")
@@ -33,6 +32,9 @@ public class HomeSubjectController {
 
     /**
      * 列表
+     *
+     * @param params the params
+     * @return the r
      */
     @RequestMapping("/list")
     @RequiresPermissions("sms:homesubject:list")
@@ -45,6 +47,9 @@ public class HomeSubjectController {
 
     /**
      * 信息
+     *
+     * @param id the id
+     * @return the r
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sms:homesubject:info")
@@ -56,6 +61,9 @@ public class HomeSubjectController {
 
     /**
      * 保存
+     *
+     * @param homeSubject the home subject
+     * @return the r
      */
     @RequestMapping("/save")
     @RequiresPermissions("sms:homesubject:save")
@@ -67,6 +75,9 @@ public class HomeSubjectController {
 
     /**
      * 修改
+     *
+     * @param homeSubject the home subject
+     * @return the r
      */
     @RequestMapping("/update")
     @RequiresPermissions("sms:homesubject:update")
@@ -78,6 +89,9 @@ public class HomeSubjectController {
 
     /**
      * 删除
+     *
+     * @param ids the ids
+     * @return the r
      */
     @RequestMapping("/delete")
     @RequiresPermissions("sms:homesubject:delete")

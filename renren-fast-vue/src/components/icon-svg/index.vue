@@ -4,7 +4,7 @@
     :width="width"
     :height="height"
     aria-hidden="true">
-    <use :xlink:href="getName"></use>
+    <use :xlink:href="/static/searchgetName"></use>
   </svg>
 </template>
 

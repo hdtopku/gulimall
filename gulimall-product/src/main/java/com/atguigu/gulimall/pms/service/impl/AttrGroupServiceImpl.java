@@ -14,6 +14,7 @@ import com.atguigu.gulimall.pms.service.AttrGroupService;
 import com.atguigu.gulimall.pms.service.AttrService;
 import com.atguigu.gulimall.vo.AttrGroupRelationVo;
 import com.atguigu.gulimall.vo.AttrGroupWithAttrsVo;
+import com.atguigu.gulimall.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -37,7 +38,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<AttrGroupEntity> page = this.page(
                 new Query<AttrGroupEntity>().getPage(params),
-                new QueryWrapper<AttrGroupEntity>()
+                new QueryWrapper<>()
         );
 
         return new PageUtils(page);
@@ -89,5 +90,12 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             }).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
+//        查出当前spu对应的所有属性的分组信息以及当前分组下的所有属性对应的值
+//        当前sku的spu对应的属性分组
+         return baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
     }
 }

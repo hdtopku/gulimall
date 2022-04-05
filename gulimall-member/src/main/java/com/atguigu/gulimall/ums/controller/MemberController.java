@@ -3,13 +3,14 @@ package com.atguigu.gulimall.ums.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.gulimall.common.utils.BizCodeEnum;
+import com.atguigu.gulimall.ums.exception.PhoneExistException;
+import com.atguigu.gulimall.ums.exception.UsernameExistException;
+import com.atguigu.gulimall.ums.vo.MemberLoginVo;
+import com.atguigu.gulimall.vo.MemberRegisterVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.ums.entity.MemberEntity;
 import com.atguigu.gulimall.ums.service.MemberService;
@@ -30,6 +31,29 @@ import com.atguigu.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @PostMapping("regist")
+    public R register(@RequestBody MemberRegisterVo vo) {
+        try {
+            memberService.register(vo);
+        } catch (UsernameExistException e) {
+            return R.error(BizCodeEnum.USERNAME_EXIST_EXCEPTION.getCode(), BizCodeEnum.USERNAME_EXIST_EXCEPTION.getMsg());
+        } catch (PhoneExistException e) {
+            return R.error(BizCodeEnum.PHONE_EXIST_EXCEPTION.getCode(), BizCodeEnum.PHONE_EXIST_EXCEPTION.getMsg());
+        }
+        return R.ok();
+    }
+
+    @PostMapping("login")
+    public R register(@RequestBody MemberLoginVo vo) {
+        MemberEntity entity = memberService.login(vo);
+        if(null == entity) {
+            return R.error(BizCodeEnum.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getCode(), BizCodeEnum.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+        return R.ok().put("data", entity);
+    }
+
+
 
     /**
      * 列表

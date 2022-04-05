@@ -3,7 +3,7 @@
 
 <mapper namespace="com.atguigu.gulimall.pms.dao.SkuSaleAttrValueDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.atguigu.gulimall.pms.entity.SkuSaleAttrValueEntity" id="skuSaleAttrValueMap">
         <result property="id" column="id"/>
         <result property="skuId" column="sku_id"/>
@@ -12,6 +12,29 @@
         <result property="attrValue" column="attr_value"/>
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
+    <resultMap id="SkuItemSaleAttrVo" type="com.atguigu.gulimall.vo.SkuItemSaleAttrVo">
+        <result property="attrId" column="attr_id"></result>
+        <result column="attr_name" property="attrName"></result>
+        <collection property="attrValues" ofType="com.atguigu.gulimall.vo.AttrValueWithSkuIdVo">
+            <result property="attrValue" column="attr_value"></result>
+            <result property="skuIds" column="sku_ids"></result>
+        </collection>
+    </resultMap>
+    <select id="getSaleAttrsBySpuId" resultMap="SkuItemSaleAttrVo">
+        select
+               pssav.attr_id,
+               pssav.attr_name,
+               group_concat(distinct info.sku_id) sku_ids,
+               pssav.attr_value
+        from pms_sku_info info
+                 left join pms_sku_sale_attr_value pssav on info.sku_id = pssav.sku_id
+        where info.spu_id = 3
+group by pssav.attr_id, pssav.attr_name, pssav.attr_value;
+    </select>
+    <select id="getSkuSaleAttrValues" resultType="java.lang.String">
+        select concat(attr_name, ": ", attr_value) from pms_sku_sale_attr_value
+        where sku_id=#{skuId}
+    </select>
 
 
 </mapper>

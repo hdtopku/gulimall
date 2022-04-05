@@ -29,6 +29,13 @@ public class R extends HashMap<String, Object> {
         Object data = get("data");
         return JSONUtil.toBean(JSONUtil.toJsonStr(data), typeReference, true);
     }
+    public <T> T getData(String key, TypeReference<T> typeReference) {
+        Object data = get(key);
+        return JSONUtil.toBean(JSONUtil.toJsonStr(data), typeReference, true);
+    }
+    public String getMessage() {
+        return (String) get("msg");
+    }
     public R setData(Object data) {
         return put("data", data);
     }

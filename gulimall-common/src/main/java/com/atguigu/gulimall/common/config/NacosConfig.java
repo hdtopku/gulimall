@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 //启用服务发现
 @EnableDiscoveryClient
 //启用服务调用
-@EnableFeignClients(basePackages = {"com.atguigu.gulimall"})
 @Configuration
 public class NacosConfig {
 }

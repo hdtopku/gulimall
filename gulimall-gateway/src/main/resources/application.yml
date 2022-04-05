@@ -43,4 +43,20 @@
 #        - id: gulimall-host-product
 #          uri: lb://gulimall-product # 负载均衡到gulimall-product服务
 #          predicates:
-#            - Host=**.gulimall.com
+#            - Host=gulimall.com,item.gulimall.com
+#        - id: gulimall-host-search
+#          uri: lb://gulimall-search # 负载均衡到gulimall-product服务
+#          predicates:
+#            - Host=search.gulimall.com
+#        - id: gulimall-host-auth
+#          uri: lb://gulimall-auth-server # 负载均衡到gulimall-auth-server认证中心
+#          predicates:
+#            - Host=auth.gulimall.com
+#        - id: gulimall-cart
+#          uri: lb://gulimall-cart # 负载均衡到gulimall-cart购物车
+#          predicates:
+#            - Host=cart.gulimall.com
+#        - id: gulimall-order
+#          uri: lb://gulimall-order # 负载均衡到gulimall-cart购物车
+#          predicates:
+#            - Host=order.gulimall.com

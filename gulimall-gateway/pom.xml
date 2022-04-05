@@ -18,11 +18,28 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.atguigu.gulimall</groupId>
             <artifactId>gulimall-common</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+<!--                Consider defining a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' in your configuration.-->
+                <exclusion>
+                    <groupId>org.springdoc</groupId>
+                    <artifactId>springdoc-openapi-ui</artifactId>
+                </exclusion>
+<!--                Caused by: org.springframework.boot.autoconfigure.session.SessionRepositoryUnavailableException: No session repository could be auto-configured, check your configuration (session store type is 'redis')-->
+                <exclusion>
+                    <groupId>org.springframework.session</groupId>
+                    <artifactId>spring-session-data-redis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-<!--      因为高版本的gateway默认不引入loadbalance，否则不支持负载均衡，报错503  -->
+        <!--      因为高版本的gateway默认不引入loadbalance，否则不支持负载均衡，报错503  -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>

@@ -1,6 +1,8 @@
 package com.atguigu.gulimall.web;
 
 import cn.hutool.core.lang.UUID;
+import com.atguigu.gulimall.common.constant.AuthServerConstant;
+import com.atguigu.gulimall.common.vo.MemberRespVo;
 import com.atguigu.gulimall.pms.entity.CategoryEntity;
 import com.atguigu.gulimall.pms.service.CategoryService;
 import com.atguigu.gulimall.vo.Catalog2Vo;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -29,9 +32,11 @@ public class IndexController {
     private final StringRedisTemplate stringRedisTemplate;
 
     @GetMapping({"/", "/index.html"})
-    public String indexPage(Model model) {
+    public String indexPage(Model model, HttpSession session) {
         List<CategoryEntity> categoryEntities = categoryService.getLevel1Categorys();
         model.addAttribute("categorys", categoryEntities);
+//        使用springSession，就无需像model中塞loginUser数据，故下面的代码可以注释了
+//        model.addAttribute("loginUser", session.getAttribute(AuthServerConstant.LOGIN_USER));
         return "index";
     }
 

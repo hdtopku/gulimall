@@ -23,6 +23,7 @@ public class PmsCategoryController {
 
     @GetMapping("list/tree")
     public R<List<CategoryEntity>> list() {
+
         List<CategoryEntity> categories = pmsCategoryService.listWithTree();
         return R.ok(categories);
     }
