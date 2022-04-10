@@ -33,7 +33,7 @@ public class RabbitMqConfig {
          * @param ack 消息是否成功收到，只要消息抵达broker，ack就为true
          * @param cause 失败的原因
          */rabbitTemplate.setConfirmCallback((correlationData, ack, cause) ->
-                log.error("correlationData：{}, ack：{}, cause：{}", correlationData, ack, cause));
+                log.info("correlationData：{}, ack：{}, cause：{}", correlationData, ack, cause));
         /**
          * 设置消息未抵达队列的确认回调(例：发送消息时指定一个错误的routingKey[hello-java2])
          * @param message 投递失败的消息详细信息
@@ -42,7 +42,7 @@ public class RabbitMqConfig {
          * @param exchange 当时这个消息发送给哪个交换机
          * @param routingKey 当时这个消息用哪个路由键
          */rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) ->
-                log.error("message:{}, replyCode:{}, replyText:{}, exchange:{}, routingKey:{}",
+                log.info("message:{}, replyCode:{}, replyText:{}, exchange:{}, routingKey:{}",
                         message, replyCode, replyText, exchange, routingKey));
     }
 }

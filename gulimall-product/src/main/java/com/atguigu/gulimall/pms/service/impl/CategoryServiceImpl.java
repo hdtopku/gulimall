@@ -22,7 +22,6 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
@@ -98,8 +97,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public Map<String, List<Catalog2Vo>> getCatalogJson() {
         String s = stringRedisTemplate.opsForValue().get("catalogJson");
         if (StrUtil.isNotBlank(s)) {
-            return JSONUtil.toBean(s, new TypeReference<>() {
-            }, true);
+            return JSONUtil.toBean(s, new TypeReference<Map<String, List<Catalog2Vo>>>() {}, true);
         }
         Map<String, List<Catalog2Vo>> catalogJsonFromDb = getCatalogFromDbWithRedisLock();
         return catalogJsonFromDb;
@@ -158,7 +156,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     private Map<String, List<Catalog2Vo>> getCatalogFromDb() {
         String s = stringRedisTemplate.opsForValue().get("catalogJson");
         if (StrUtil.isNotBlank(s)) {
-            return JSONUtil.toBean(s, new TypeReference<>() {
+            return JSONUtil.toBean(s, new TypeReference<Map<String, List<Catalog2Vo>>>() {
             }, true);
         }
         System.out.println("查询了数据库");

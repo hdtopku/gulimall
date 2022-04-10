@@ -5,8 +5,10 @@ import com.atguigu.common.utils.R;
 import com.atguigu.gulimall.common.to.SkuHasStockTo;
 import com.atguigu.gulimall.wms.entity.WareSkuEntity;
 import com.atguigu.gulimall.wms.service.WareSkuService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -32,6 +34,17 @@ public class WareSkuController {
     public R getSkusHasStock(@RequestBody List<Long> skuIds) {
         List<SkuHasStockTo> vos = wareSkuService.getSkusHasStock(skuIds);
         return R.ok().put("data", vos);
+    }
+
+    @GetMapping("addStock")
+//    @Transactional(rollbackFor = Exception.class)
+    public R addSkuStock() {
+        WareSkuEntity skuEntity = wareSkuService.getOne(new QueryWrapper<WareSkuEntity>().eq("sku_id", 1));
+        WareSkuEntity entity = new WareSkuEntity();
+        entity.setStock(skuEntity.getStock() + 1);
+        entity.setId(skuEntity.getId());
+        wareSkuService.updateById(entity);
+        return R.ok();
     }
 
     /**

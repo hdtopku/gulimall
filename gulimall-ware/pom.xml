@@ -30,7 +30,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -42,11 +41,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--        seata-->
         <dependency>
-            <groupId>com.github.davidfantasy</groupId>
-            <artifactId>mybatis-plus-generator-ui</artifactId>
-            <version>1.4.5</version>
-            <scope>test</scope>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <version>2.2.7.RELEASE</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

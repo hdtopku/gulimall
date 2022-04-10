@@ -23,7 +23,6 @@ public class FeignCookieConfig {
     @Bean("requestInterceptor")
     public RequestInterceptor requestInterceptor() {
         return template -> {
-            log.error("interceptor线程：" + Thread.currentThread().getId());
             ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             if (null == requestAttributes) {
                 return;

@@ -37,6 +37,11 @@
                     <groupId>org.springframework.session</groupId>
                     <artifactId>spring-session-data-redis</artifactId>
                 </exclusion>
+<!--                Parameter 0 of method modifyRequestBodyGatewayFilterFactory in org.springframework.cloud.gateway.config.GatewayAutoConfiguration required a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' that could not be found.-->
+                <exclusion>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <!--      因为高版本的gateway默认不引入loadbalance，否则不支持负载均衡，报错503  -->

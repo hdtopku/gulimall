@@ -1,6 +1,8 @@
 package com.atguigu.gulimall.oms.service;
 
 import com.atguigu.gulimall.oms.vo.OrderConfirmVo;
+import com.atguigu.gulimall.oms.vo.OrderSubmitVo;
+import com.atguigu.gulimall.oms.vo.SubmitOrderResponseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.oms.entity.OrderEntity;
@@ -31,5 +33,13 @@ public interface OrderService extends IService<OrderEntity> {
      * @return the order confirm vo
      */
     OrderConfirmVo confirmOrder();
+
+    SubmitOrderResponseVo submitOrder(OrderSubmitVo submitVo);
+
+    /**
+     * 仅测试seata全局事务的方法
+     * @param skuId
+     */
+    void buy(Long skuId);
 }
 
