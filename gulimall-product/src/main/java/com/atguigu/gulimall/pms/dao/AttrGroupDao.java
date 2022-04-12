@@ -1,7 +1,7 @@
 package com.atguigu.gulimall.pms.dao;
 
 import com.atguigu.gulimall.pms.entity.AttrGroupEntity;
-import com.atguigu.gulimall.vo.SpuItemAttrGroupVo;
+import com.atguigu.gulimall.common.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

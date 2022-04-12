@@ -27,20 +27,25 @@
             <artifactId>gulimall-common</artifactId>
             <version>${project.version}</version>
             <exclusions>
-<!--                Consider defining a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' in your configuration.-->
+                <!--                Consider defining a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' in your configuration.-->
                 <exclusion>
                     <groupId>org.springdoc</groupId>
                     <artifactId>springdoc-openapi-ui</artifactId>
                 </exclusion>
-<!--                Caused by: org.springframework.boot.autoconfigure.session.SessionRepositoryUnavailableException: No session repository could be auto-configured, check your configuration (session store type is 'redis')-->
+                <!--                Caused by: org.springframework.boot.autoconfigure.session.SessionRepositoryUnavailableException: No session repository could be auto-configured, check your configuration (session store type is 'redis')-->
                 <exclusion>
                     <groupId>org.springframework.session</groupId>
                     <artifactId>spring-session-data-redis</artifactId>
                 </exclusion>
-<!--                Parameter 0 of method modifyRequestBodyGatewayFilterFactory in org.springframework.cloud.gateway.config.GatewayAutoConfiguration required a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' that could not be found.-->
+                <!--                Parameter 0 of method modifyRequestBodyGatewayFilterFactory in org.springframework.cloud.gateway.config.GatewayAutoConfiguration required a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' that could not be found.-->
                 <exclusion>
                     <groupId>com.alibaba.cloud</groupId>
                     <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+                </exclusion>
+                <!--                偶尔报错：org.redisson.client.RedisTimeoutException: Command execution timeout for command: (PING), params: [], Redis client: [addr=redis://121.41.170.120:6379]-->
+                <exclusion>
+                    <groupId>org.redisson</groupId>
+                    <artifactId>redisson</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -53,7 +58,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-
+        <!--        sentinel-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+            <version>2.2.7.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

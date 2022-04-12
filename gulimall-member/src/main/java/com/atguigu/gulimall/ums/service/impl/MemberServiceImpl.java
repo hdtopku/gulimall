@@ -1,14 +1,12 @@
 package com.atguigu.gulimall.ums.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.atguigu.gulimall.ums.dao.MemberLevelDao;
 import com.atguigu.gulimall.ums.entity.MemberLevelEntity;
 import com.atguigu.gulimall.ums.exception.PhoneExistException;
 import com.atguigu.gulimall.ums.exception.UsernameExistException;
 import com.atguigu.gulimall.ums.vo.MemberLoginVo;
-import com.atguigu.gulimall.vo.MemberRegisterVo;
+import com.atguigu.gulimall.common.vo.MemberRegisterVo;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Map;

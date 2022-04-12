@@ -8,7 +8,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.atguigu.gulimall.pms.entity.AttrEntity;
 import com.atguigu.gulimall.pms.service.AttrService;
 import com.atguigu.gulimall.pms.service.CategoryService;
-import com.atguigu.gulimall.vo.AttrGroupRelationVo;
+import com.atguigu.gulimall.common.vo.AttrGroupRelationVo;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.atguigu.gulimall.pms.service;
 
-import com.atguigu.gulimall.vo.SkuItemVo;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.atguigu.gulimall.common.vo.SkuItemVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.pms.entity.SkuInfoEntity;
@@ -24,6 +25,6 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     List<SkuInfoEntity> getSkusBySpuId(Long spuId);
 
-    SkuItemVo item(Long skuId) throws ExecutionException, InterruptedException;
+    SkuItemVo item(Long skuId) throws ExecutionException, InterruptedException, BlockException;
 }
 

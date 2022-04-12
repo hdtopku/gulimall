@@ -1,7 +1,8 @@
 package com.atguigu.gulimall.web;
 
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.atguigu.gulimall.pms.service.SkuInfoService;
-import com.atguigu.gulimall.vo.SkuItemVo;
+import com.atguigu.gulimall.common.vo.SkuItemVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class ItemController {
     private final SkuInfoService skuInfoService;
 
     @GetMapping("/{skuId}.html")
-    public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException {
+    public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException, BlockException {
         SkuItemVo skuItemVo = skuInfoService.item(skuId);
         model.addAttribute("item", skuItemVo);
         return "item";

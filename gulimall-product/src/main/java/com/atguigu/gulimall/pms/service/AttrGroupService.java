@@ -2,9 +2,9 @@ package com.atguigu.gulimall.pms.service;
 
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.pms.entity.AttrGroupEntity;
-import com.atguigu.gulimall.vo.AttrGroupRelationVo;
-import com.atguigu.gulimall.vo.AttrGroupWithAttrsVo;
-import com.atguigu.gulimall.vo.SpuItemAttrGroupVo;
+import com.atguigu.gulimall.common.vo.AttrGroupRelationVo;
+import com.atguigu.gulimall.common.vo.AttrGroupWithAttrsVo;
+import com.atguigu.gulimall.common.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

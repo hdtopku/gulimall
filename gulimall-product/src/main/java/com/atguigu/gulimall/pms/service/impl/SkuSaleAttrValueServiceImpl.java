@@ -1,6 +1,6 @@
 package com.atguigu.gulimall.pms.service.impl;
 
-import com.atguigu.gulimall.vo.SkuItemSaleAttrVo;
+import com.atguigu.gulimall.common.vo.SkuItemSaleAttrVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

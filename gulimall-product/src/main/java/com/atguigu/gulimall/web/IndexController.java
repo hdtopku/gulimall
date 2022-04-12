@@ -1,18 +1,18 @@
 package com.atguigu.gulimall.web;
 
 import cn.hutool.core.lang.UUID;
-import com.atguigu.gulimall.common.constant.AuthServerConstant;
-import com.atguigu.gulimall.common.vo.MemberRespVo;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.atguigu.gulimall.pms.entity.CategoryEntity;
 import com.atguigu.gulimall.pms.service.CategoryService;
-import com.atguigu.gulimall.vo.Catalog2Vo;
+import com.atguigu.gulimall.common.vo.Catalog2Vo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.*;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -26,10 +26,20 @@ import java.util.concurrent.TimeUnit;
  */
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class IndexController {
     private final CategoryService categoryService;
     private final RedissonClient redissonClient;
     private final StringRedisTemplate stringRedisTemplate;
+    @ResponseBody
+    @GetMapping("/index/test")
+    @SentinelResource(value = "seckillSkus", blockHandler = "testBlockHandler", fallbackClass = {})
+    public String test() {
+        return "ok";
+    }
+    public String testBlockHandler(BlockException e) {
+        return "请求过于频繁";
+    }
 
     @GetMapping({"/", "/index.html"})
     public String indexPage(Model model, HttpSession session) {
@@ -45,6 +55,7 @@ public class IndexController {
     public Map<String, List<Catalog2Vo>> getCatalogJson() {
         return categoryService.getCatalogJson();
     }
+
 
     @ResponseBody
     @GetMapping("/hello")

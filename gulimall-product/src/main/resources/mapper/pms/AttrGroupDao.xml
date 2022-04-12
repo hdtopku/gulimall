@@ -13,9 +13,9 @@
         <result property="catelogId" column="catelog_id"/>
     </resultMap>
     
-    <resultMap id="SpuItemAttrGroupVo" type="com.atguigu.gulimall.vo.SpuItemAttrGroupVo">
+    <resultMap id="SpuItemAttrGroupVo" type="com.atguigu.gulimall.common.vo.SpuItemAttrGroupVo">
         <result property="groupName" column="attr_group_name"></result>
-        <collection property="attrs" ofType="com.atguigu.gulimall.vo.SpuBaseAttrVo">
+        <collection property="attrs" ofType="com.atguigu.gulimall.common.vo.SpuBaseAttrVo">
             <result property="attrName" column="attr_name"></result>
             <result column="attr_value" property="attrValue"></result>
         </collection>

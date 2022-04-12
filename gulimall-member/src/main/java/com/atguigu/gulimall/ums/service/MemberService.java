@@ -1,7 +1,7 @@
 package com.atguigu.gulimall.ums.service;
 
 import com.atguigu.gulimall.ums.vo.MemberLoginVo;
-import com.atguigu.gulimall.vo.MemberRegisterVo;
+import com.atguigu.gulimall.common.vo.MemberRegisterVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.ums.entity.MemberEntity;

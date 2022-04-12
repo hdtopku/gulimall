@@ -3,7 +3,7 @@ package com.atguigu.gulimall.pms.controller;
 import java.util.Arrays;
 import java.util.Map;
 
-import com.atguigu.gulimall.vo.SpuSaveVo;
+import com.atguigu.gulimall.common.vo.SpuSaveVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

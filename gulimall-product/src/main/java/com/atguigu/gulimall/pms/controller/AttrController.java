@@ -6,14 +6,13 @@ import java.util.Map;
 
 import com.atguigu.gulimall.pms.entity.ProductAttrValueEntity;
 import com.atguigu.gulimall.pms.service.ProductAttrValueService;
-import com.atguigu.gulimall.vo.AttrRespVo;
-import com.atguigu.gulimall.vo.AttrVo;
+import com.atguigu.gulimall.common.vo.AttrRespVo;
+import com.atguigu.gulimall.common.vo.AttrVo;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gulimall.pms.entity.AttrEntity;
 import com.atguigu.gulimall.pms.service.AttrService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;

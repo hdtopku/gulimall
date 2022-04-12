@@ -5,7 +5,6 @@ package com.atguigu.gulimall.search.service.impl;
  * @createTime 2022-03-19 11:10:44
  */
 
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.atguigu.gulimall.common.to.es.SkuEsModel;
 import com.atguigu.gulimall.search.config.EsConfig;

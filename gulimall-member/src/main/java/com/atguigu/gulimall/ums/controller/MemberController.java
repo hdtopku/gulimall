@@ -7,7 +7,7 @@ import com.atguigu.gulimall.common.utils.BizCodeEnum;
 import com.atguigu.gulimall.ums.exception.PhoneExistException;
 import com.atguigu.gulimall.ums.exception.UsernameExistException;
 import com.atguigu.gulimall.ums.vo.MemberLoginVo;
-import com.atguigu.gulimall.vo.MemberRegisterVo;
+import com.atguigu.gulimall.common.vo.MemberRegisterVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

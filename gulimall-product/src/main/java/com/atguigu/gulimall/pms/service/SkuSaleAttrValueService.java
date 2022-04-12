@@ -1,6 +1,6 @@
 package com.atguigu.gulimall.pms.service;
 
-import com.atguigu.gulimall.vo.SkuItemSaleAttrVo;
+import com.atguigu.gulimall.common.vo.SkuItemSaleAttrVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.pms.entity.SkuSaleAttrValueEntity;

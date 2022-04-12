@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import com.atguigu.gulimall.pms.entity.BrandEntity;
-import com.atguigu.gulimall.vo.BrandVo;
+import com.atguigu.gulimall.common.vo.BrandVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

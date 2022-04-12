@@ -1,7 +1,7 @@
 package com.atguigu.gulimall;
 
 import com.atguigu.gulimall.pms.dao.AttrGroupDao;
-import com.atguigu.gulimall.vo.SpuItemAttrGroupVo;
+import com.atguigu.gulimall.common.vo.SpuItemAttrGroupVo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

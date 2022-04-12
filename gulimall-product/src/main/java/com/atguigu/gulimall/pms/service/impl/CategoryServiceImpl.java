@@ -13,7 +13,7 @@ import com.atguigu.gulimall.pms.dao.CategoryDao;
 import com.atguigu.gulimall.pms.entity.CategoryEntity;
 import com.atguigu.gulimall.pms.service.CategoryBrandRelationService;
 import com.atguigu.gulimall.pms.service.CategoryService;
-import com.atguigu.gulimall.vo.Catalog2Vo;
+import com.atguigu.gulimall.common.vo.Catalog2Vo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -2,7 +2,6 @@ package com.atguigu.gulimall.pms.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -22,7 +21,7 @@ import com.atguigu.gulimall.pms.feign.CouponFeignService;
 import com.atguigu.gulimall.pms.feign.SearchFeignService;
 import com.atguigu.gulimall.pms.feign.WareFeignService;
 import com.atguigu.gulimall.pms.service.*;
-import com.atguigu.gulimall.vo.*;
+import com.atguigu.gulimall.common.vo.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

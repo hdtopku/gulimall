@@ -2,7 +2,7 @@ package com.atguigu.gulimall.pms.service;
 
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.pms.entity.CategoryEntity;
-import com.atguigu.gulimall.vo.Catalog2Vo;
+import com.atguigu.gulimall.common.vo.Catalog2Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
